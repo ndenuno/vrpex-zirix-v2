@@ -15,6 +15,7 @@ AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
 end)
 
 function processSpawnController(source,statusSent,user_id)
+	local source = source
 	if statusSent == 2 then
 		if not userlogin[user_id] then
 			userlogin[user_id] = true
@@ -36,7 +37,7 @@ AddEventHandler("character-creator:finishedCharacter",function(characterNome,cha
 		vRP.setUData(user_id,"currentCharacterMode",json.encode(currentCharacterMode))
 		vRP.setUData(user_id,"vRP:spawnController",json.encode(2))
 		
-		vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = "Indigente", name = "Individuo", age = characterAge })
+		vRP.execute("vRP/update_user_first_spawn",{ user_id = user_id, firstname = characterNome, name = characterSobrenome, age = characterAge })
 		
 		doSpawnPlayer(source,user_id,true)
 		
