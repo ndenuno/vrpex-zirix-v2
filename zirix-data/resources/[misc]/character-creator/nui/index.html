@@ -243,7 +243,8 @@
                     <div style="display: inline-flex;">
                         <input type="text" v-model="characterNome" @input="changeAppearance" placeholder="Nome" style="width:120px; text-align: center; border-radius: 15px; border: 0; padding: 5px; margin-bottom:5px; margin-right:2px;">
                         <input type="text" v-model="characterSobrenome" @input="changeAppearance" placeholder="Sobrenome" style="width:120px; text-align: center; border-radius: 15px; border: 0; padding: 5px; margin-bottom:5px; margin-right:2px;">
-                    </div>
+                    	<input type="text" v-model.number="characterAge" @input="changeAppearance" placeholder="Idade" style="width:120px; text-align: center; border-radius: 15px; border: 0; padding: 5px; margin-bottom:5px; margin-right:2px;" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/,'')">    
+		    </div>
                 </div>
             </div>
             <div class="inventory_head">
@@ -446,6 +447,7 @@ const app = new Vue({
 		CharacterMode: false,
 		characterNome: "",
 		characterSobrenome: "",
+		characterAge: "",
 		gender: 0,
 		father: 0,
 		mother: 0,
@@ -509,6 +511,7 @@ const app = new Vue({
 			const arr1 = {
 				characterNome: this.characterNome.trim(),
 				characterSobrenome: this.characterSobrenome.trim(),
+				characterAge: this.characterAge,
 				fathersID: this.fathersID[this.father],
 				mothersID: this.mothersID[this.mother], 
 				skinColor: this.skinColor,
@@ -581,6 +584,7 @@ const app = new Vue({
 			const arr = [
 				this.characterNome.trim(),
 				this.characterSobrenome.trim(),
+				this.characterAge,
 				this.fathersID[this.father],
 				this.mothersID[this.mother], 
 				this.skinColor,  
@@ -588,6 +592,9 @@ const app = new Vue({
 			];
 			if (this.characterNome.trim().length < 1) return;
 			if (this.characterSobrenome.trim().length < 1) return;
+			
+			if (this.characterAge.length < 1) return;
+			if (this.characterAge < 18 || this.characterAge > 90) return;
 
 			if (checkName(this.characterNome.trim())) return;
 			if (checkName(this.characterSobrenome.trim())) return;
