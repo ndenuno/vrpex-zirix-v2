@@ -297,6 +297,7 @@ RegisterNUICallback('UpdateSkinOptions',function(data,cb)
 	currentCharacterMode.shapeMix = data.shapeMix
 	characterNome = data.characterNome
 	characterSobrenome = data.characterSobrenome
+	characterAge = data.characterAge
 	TaskUpdateSkinOptions()
 	cb('ok')
 end)
